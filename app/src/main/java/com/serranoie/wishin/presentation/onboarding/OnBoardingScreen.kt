@@ -1,6 +1,5 @@
 package com.serranoie.wishin.presentation.onboarding
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,8 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import com.serranoie.wishin.presentation.onboarding.components.OnBoardingEvent
 import com.serranoie.wishin.presentation.onboarding.components.OnBoardingPage
 import com.serranoie.wishin.presentation.onboarding.components.PageIndicator
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
@@ -32,7 +30,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit,
+) {
     Column(modifier = Modifier.fillMaxSize()) {
         val pagerState = rememberPagerState(initialPage = 0) {
             pages.size
@@ -86,8 +86,9 @@ fun OnBoardingScreen() {
                 Button(
                     onClick = {
                         scope.launch {
-                            if (pagerState.currentPage == 2) {
+                            if (pagerState.currentPage == 1) {
                                 /*TODO: Navigate to HomeScreen */
+                                event(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
                             }
@@ -102,10 +103,10 @@ fun OnBoardingScreen() {
     }
 }
 
-@Preview(showBackground = true)
-@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-@PreviewLightDark
-@Composable
-private fun PreviewOnBoardingScreen() {
-    OnBoardingScreen()
-}
+// @Preview(showBackground = true)
+// @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+// @PreviewLightDark
+// @Composable
+// private fun PreviewOnBoardingScreen() {
+//    OnBoardingScreen()
+// }
