@@ -1,4 +1,4 @@
-package com.serranoie.wishin.utils
+package com.serranoie.wishin.presentation.utils
 
 import androidx.compose.ui.unit.dp
 

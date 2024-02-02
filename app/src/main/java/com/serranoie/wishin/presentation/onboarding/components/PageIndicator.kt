@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import com.serranoie.wishin.utils.Dimens.indicatorSize
+import com.serranoie.wishin.presentation.utils.Dimens.indicatorSize
 
 @Composable
 fun PageIndicator(

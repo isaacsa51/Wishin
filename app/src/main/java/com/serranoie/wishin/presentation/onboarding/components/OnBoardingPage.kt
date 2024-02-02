@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.serranoie.wishin.presentation.onboarding.Page
 import com.serranoie.wishin.presentation.onboarding.pages
-import com.serranoie.wishin.utils.Dimens.mediumPadding
+import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
 
 @Composable
 fun OnBoardingPage(

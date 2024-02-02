@@ -26,8 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.serranoie.wishin.presentation.onboarding.components.OnBoardingPage
 import com.serranoie.wishin.presentation.onboarding.components.PageIndicator
-import com.serranoie.wishin.utils.Dimens.mediumPadding
-import com.serranoie.wishin.utils.Dimens.pageIndicatorWidth
+import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
+import com.serranoie.wishin.presentation.utils.Dimens.pageIndicatorWidth
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
