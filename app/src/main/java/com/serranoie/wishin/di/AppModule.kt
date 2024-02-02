@@ -3,9 +3,9 @@ package com.serranoie.wishin.di
 import android.app.Application
 import com.serranoie.wishin.data.manager.LocalUserManagerImpl
 import com.serranoie.wishin.domain.manager.LocalUserManager
-import com.serranoie.wishin.domain.usecases.AppEntryUseCase
-import com.serranoie.wishin.domain.usecases.ReadAppEntry
-import com.serranoie.wishin.domain.usecases.SaveAppEntry
+import com.serranoie.wishin.domain.usecases.appentry.AppEntryUseCase
+import com.serranoie.wishin.domain.usecases.appentry.ReadAppEntry
+import com.serranoie.wishin.domain.usecases.appentry.SaveAppEntry
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

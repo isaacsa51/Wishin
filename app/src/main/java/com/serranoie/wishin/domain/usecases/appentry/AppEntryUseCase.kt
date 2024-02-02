@@ -1,4 +1,4 @@
-package com.serranoie.wishin.domain.usecases
+package com.serranoie.wishin.domain.usecases.appentry
 
 data class AppEntryUseCase(
     val readAppEntry: ReadAppEntry,

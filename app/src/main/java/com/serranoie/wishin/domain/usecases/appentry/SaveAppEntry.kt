@@ -1,4 +1,4 @@
-package com.serranoie.wishin.domain.usecases
+package com.serranoie.wishin.domain.usecases.appentry
 
 import com.serranoie.wishin.domain.manager.LocalUserManager
 

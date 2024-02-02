@@ -18,7 +18,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.serranoie.wishin.domain.usecases.AppEntryUseCase
+import com.serranoie.wishin.domain.usecases.appentry.AppEntryUseCase
 import com.serranoie.wishin.presentation.navigation.NavGraph
 import com.serranoie.wishin.ui.theme.WishinTheme
 import dagger.hilt.android.AndroidEntryPoint
