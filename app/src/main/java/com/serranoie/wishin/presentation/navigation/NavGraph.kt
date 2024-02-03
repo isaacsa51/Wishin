@@ -1,5 +1,6 @@
 package com.serranoie.wishin.presentation.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
@@ -13,6 +14,7 @@ import com.serranoie.wishin.presentation.onboarding.OnBoardingViewModel
 @Composable
 fun NavGraph(
     startDestination: String,
+    paddingValues: PaddingValues,
 ) {
     val navController = rememberNavController()
 
@@ -38,7 +40,7 @@ fun NavGraph(
             composable(
                 route = Route.HomeScreen.route,
             ) {
-                HomeScreen()
+                HomeScreen(paddingValues)
             }
         }
     }
