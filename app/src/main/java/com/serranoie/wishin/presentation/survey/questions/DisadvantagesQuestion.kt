@@ -11,7 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -27,10 +27,10 @@ import com.serranoie.wishin.ui.theme.WishinTheme
 fun DisadvantagesQuestion(
     @StringRes titleResourceId: Int,
     @StringRes directionsResourceId: Int,
-    onClick: () -> Unit,
+    onInputResponse: String?,
     modifier: Modifier = Modifier,
 ) {
-    var text by remember { mutableStateOf("") }
+    var text by rememberSaveable { mutableStateOf("") }
 
     QuestionWrapper(
         titleResourceId = titleResourceId,
@@ -43,7 +43,7 @@ fun DisadvantagesQuestion(
         ) {
             AutoSizeTextField(
                 value = text,
-                onValueChange = { text = it },
+                onValueChange = { onInputResponse },
                 maxLines = 4,
                 minFontSize = 10.sp,
                 modifier = Modifier
@@ -56,6 +56,19 @@ fun DisadvantagesQuestion(
     }
 }
 
+@Composable
+fun PopulateDisadvantages(
+    modifier: Modifier = Modifier,
+    onInputResponse: String?,
+) {
+    DisadvantagesQuestion(
+        titleResourceId = R.string.cons_question,
+        directionsResourceId = R.string.reasons_helper,
+        onInputResponse = onInputResponse,
+        modifier = modifier,
+    )
+}
+
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -65,7 +78,7 @@ private fun DisadvantagesPreview() {
             DisadvantagesQuestion(
                 titleResourceId = R.string.cons_question,
                 directionsResourceId = R.string.reasons_helper,
-                onClick = { /*TODO*/ },
+                onInputResponse = null,
             )
         }
     }

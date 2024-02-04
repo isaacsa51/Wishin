@@ -11,7 +11,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,10 +26,10 @@ import com.serranoie.wishin.ui.theme.WishinTheme
 fun NameItemQuestion(
     @StringRes titleResourceId: Int,
     @StringRes directionsResourceId: Int,
-    onClick: () -> Unit,
+    onInputResponse: String?,
     modifier: Modifier = Modifier,
 ) {
-    var text by remember { mutableStateOf("") }
+    var text by rememberSaveable { mutableStateOf("") }
 
     QuestionWrapper(
         titleResourceId = titleResourceId,
@@ -42,7 +42,7 @@ fun NameItemQuestion(
         ) {
             AutoSizeTextField(
                 value = text,
-                onValueChange = { text = it },
+                onValueChange = { onInputResponse },
                 maxLines = 2,
                 minFontSize = 10.sp,
                 modifier = Modifier
@@ -55,13 +55,30 @@ fun NameItemQuestion(
     }
 }
 
+@Composable
+fun PopulateNameQuestion(
+    modifier: Modifier = Modifier,
+    onInputResponse: String?,
+) {
+    NameItemQuestion(
+        titleResourceId = R.string.name_question,
+        directionsResourceId = R.string.name_helper,
+        onInputResponse = onInputResponse,
+        modifier = modifier,
+    )
+}
+
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun NameItemQuestionPreview() {
     WishinTheme {
         Surface {
-            NameItemQuestion(titleResourceId = R.string.name_question, directionsResourceId = R.string.name_helper, onClick = { /*TODO*/ })
+            NameItemQuestion(
+                titleResourceId = R.string.name_question,
+                directionsResourceId = R.string.name_helper,
+                onInputResponse = null,
+            )
         }
     }
 }

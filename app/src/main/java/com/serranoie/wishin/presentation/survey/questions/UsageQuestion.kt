@@ -85,6 +85,22 @@ fun UsageQuestion(
     }
 }
 
+@Composable
+fun PopulateUsageQuestion(
+    value: Float?,
+    onValueChange: (Float) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    UsageQuestion(
+        titleResourceId = R.string.usage_question,
+        value = value,
+        onValueChange = onValueChange,
+        startTextResource = R.string.usage_barely,
+        neutralTextResource = R.string.usage_sometimes,
+        endTextResource = R.string.usage_very_often,
+    )
+}
+
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable

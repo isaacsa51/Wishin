@@ -21,7 +21,7 @@ class SurveyViewModel() : ViewModel() {
     // Responses exposed as State
     private val _nameItemResponse = mutableStateOf<String?>(null)
     val nameItemResponse: String?
-        get() = _nameItemResponse.toString()
+        get() = _nameItemResponse.value
 
     private val _categoryResponse = mutableStateOf<Category?>(null)
     val categoryResponse: Category?

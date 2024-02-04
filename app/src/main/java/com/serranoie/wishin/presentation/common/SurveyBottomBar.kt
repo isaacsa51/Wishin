@@ -1,6 +1,5 @@
 package com.serranoie.wishin.presentation.common
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -19,16 +18,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serranoie.wishin.R
-import com.serranoie.wishin.ui.theme.WishinTheme
 
 @Composable
 fun SurveyBottomBar(
     shouldShowPreviousButton: Boolean,
     shouldShowDoneButton: Boolean,
     isNextButtonEnabled: Boolean,
+    onPreviousPressed: () -> Unit,
+    onNextPressed: () -> Unit,
+    onDonePressed: () -> Unit,
 ) {
     Surface(shadowElevation = 7.dp) {
         Row(
@@ -45,7 +45,7 @@ fun SurveyBottomBar(
                     modifier = Modifier
                         .weight(1f)
                         .height(48.dp),
-                    onClick = {},
+                    onClick = onPreviousPressed,
                 ) {
                     Text(text = stringResource(id = R.string.previous))
                 }
@@ -56,7 +56,7 @@ fun SurveyBottomBar(
                     modifier = Modifier
                         .weight(1f)
                         .height(48.dp),
-                    onClick = { },
+                    onClick = onDonePressed,
                     enabled = isNextButtonEnabled,
                 ) {
                     Text(text = stringResource(id = R.string.done))
@@ -66,23 +66,12 @@ fun SurveyBottomBar(
                     modifier = Modifier
                         .weight(1f)
                         .height(48.dp),
-                    onClick = { },
+                    onClick = onNextPressed,
                     enabled = isNextButtonEnabled,
                 ) {
                     Text(text = stringResource(id = R.string.next))
                 }
             }
-        }
-    }
-}
-
-@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun SurveyBottomBarPreview() {
-    WishinTheme {
-        Surface {
-            SurveyBottomBar(shouldShowPreviousButton = true, shouldShowDoneButton = true, isNextButtonEnabled = true)
         }
     }
 }

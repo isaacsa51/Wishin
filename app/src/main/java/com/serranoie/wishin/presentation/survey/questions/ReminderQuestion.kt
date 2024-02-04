@@ -75,6 +75,21 @@ fun ReminderQuestion(
     }
 }
 
+@Composable
+fun PopulateReminderQuestion(
+    dateInMillis: Long?,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ReminderQuestion(
+        titleResourceId = R.string.reminder_question,
+        directionsResourceId = R.string.select_date,
+        dateInMillis = dateInMillis,
+        onClick = onClick,
+        modifier = modifier,
+    )
+}
+
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable

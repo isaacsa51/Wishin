@@ -60,6 +60,34 @@ fun CategoryQuestion(
 }
 
 @Composable
+fun PopulateCategoryQuestion(
+    selectedAnswer: Category?,
+    onOptionSelected: (Category) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val possibleAnswers = listOf(
+        Category(R.string.category_art),
+        Category(R.string.category_automotive),
+        Category(R.string.category_beauty),
+        Category(R.string.category_books),
+        Category(R.string.category_clothing),
+        Category(R.string.category_electronics),
+        Category(R.string.category_gaming),
+        Category(R.string.category_hobbies),
+        Category(R.string.category_tools),
+    )
+
+    CategoryQuestion(
+        titleResourceId = R.string.category_question,
+        directionsResourceId = R.string.category_helper,
+        possibleAnswers = possibleAnswers,
+        selectedAnswer = selectedAnswer,
+        onOptionSelected = onOptionSelected,
+        modifier = modifier,
+    )
+}
+
+@Composable
 fun RadioButtonOption(
     text: String,
     selected: Boolean,
