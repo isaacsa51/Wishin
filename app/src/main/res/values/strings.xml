@@ -14,6 +14,16 @@
     <string name="question">Commodo magna intellegat appetere referrentur?</string>
     <string name="instructions">Insert name below</string>
 
+    <!-- Categories question -->
+    <string name="category_art">Art</string>
+    <string name="category_automotive">Automotive</string>
+    <string name="category_beauty">Beauty</string>
+    <string name="category_books">Books</string>
+    <string name="category_clothing">Clothing</string>
+    <string name="category_electronics">Electronics</string>
+    <string name="category_gaming">Gaming</string>
+    <string name="category_tools">Tools</string>
+    <string name="category_hobbies">Hobbies</string>
 
     <!-- survey-->
     <string name="question_count">\u00A0of %d</string>
