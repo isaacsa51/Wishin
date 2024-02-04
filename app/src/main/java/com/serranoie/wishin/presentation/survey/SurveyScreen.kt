@@ -28,7 +28,6 @@ import com.serranoie.wishin.presentation.utils.supportWideScreen
 fun SurveyScreen(
     surveyScreenData: SurveyScreenData,
     isNextEnabled: Boolean,
-    onClosePressed: () -> Unit,
     onPreviousPressed: () -> Unit,
     onNextPressed: () -> Unit,
     onDonePressed: () -> Unit,

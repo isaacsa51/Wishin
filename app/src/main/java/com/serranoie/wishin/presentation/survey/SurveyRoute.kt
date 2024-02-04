@@ -2,7 +2,6 @@ package com.serranoie.wishin.presentation.survey
 
 import android.content.Context
 import android.content.ContextWrapper
-import androidx.activity.compose.BackHandler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentTransitionScope
@@ -32,24 +31,14 @@ private const val CONTENT_ANIMATION_DURATION = 300
 @Composable
 fun SurveyRoute(
     onSurveyComplete: () -> Unit,
-    onNavUp: () -> Unit,
 ) {
     val viewModel: SurveyViewModel = viewModel()
 
     val surveyScreenData = viewModel.surveyScreenData ?: return
 
-    BackHandler {
-        if (!viewModel.onBackPressed()) {
-            onNavUp()
-        }
-    }
-
     SurveyScreen(
         surveyScreenData = surveyScreenData,
         isNextEnabled = viewModel.isNextEnabled,
-        onClosePressed = {
-            onNavUp()
-        },
         onPreviousPressed = { viewModel.onPreviousPressed() },
         onNextPressed = { viewModel.onNextPressed() },
         onDonePressed = { viewModel.onDonePressed(onSurveyComplete) },

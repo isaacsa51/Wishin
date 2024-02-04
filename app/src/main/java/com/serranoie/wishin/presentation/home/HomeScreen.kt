@@ -16,16 +16,21 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.serranoie.wishin.presentation.common.ExpandableItem
+import com.serranoie.wishin.presentation.navigation.Route
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(paddingValues: PaddingValues) {
+fun HomeScreen(
+    navController: NavController,
+    paddingValues: PaddingValues,
+) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = { navController.navigate(Route.SurveyQuestionsScreen.route) },
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Add,

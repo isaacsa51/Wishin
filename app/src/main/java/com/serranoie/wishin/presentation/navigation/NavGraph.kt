@@ -10,6 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import com.serranoie.wishin.presentation.home.HomeScreen
 import com.serranoie.wishin.presentation.onboarding.OnBoardingScreen
 import com.serranoie.wishin.presentation.onboarding.OnBoardingViewModel
+import com.serranoie.wishin.presentation.survey.SurveyResultScreen
+import com.serranoie.wishin.presentation.survey.SurveyRoute
 
 @Composable
 fun NavGraph(
@@ -40,7 +42,17 @@ fun NavGraph(
             composable(
                 route = Route.HomeScreen.route,
             ) {
-                HomeScreen(paddingValues)
+                HomeScreen(navController, paddingValues)
+            }
+
+            composable(route = Route.SurveyQuestionsScreen.route) {
+                SurveyRoute(onSurveyComplete = { navController.navigate(Route.FinishedSurveyScreen.route) })
+            }
+
+            composable(route = Route.FinishedSurveyScreen.route) {
+                SurveyResultScreen {
+                    navController.popBackStack(Route.HomeScreen.route, false)
+                }
             }
         }
     }
