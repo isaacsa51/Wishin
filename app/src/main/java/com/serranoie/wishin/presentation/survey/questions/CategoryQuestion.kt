@@ -125,8 +125,8 @@ private fun CategoryQuestionPreview() {
     WishinTheme {
         Surface {
             CategoryQuestion(
-                titleResourceId = R.string.question,
-                directionsResourceId = R.string.instructions,
+                titleResourceId = R.string.category_question,
+                directionsResourceId = R.string.category_helper,
                 possibleAnswers = possibleAnswers,
                 selectedAnswer = selectedAnswer,
                 onOptionSelected = { selectedAnswer = it },

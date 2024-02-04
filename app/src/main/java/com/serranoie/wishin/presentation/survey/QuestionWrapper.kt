@@ -57,7 +57,7 @@ private fun QuestionTitle(
 ) {
     Text(
         text = stringResource(id = title),
-        style = MaterialTheme.typography.titleLarge,
+        style = MaterialTheme.typography.headlineMedium,
         fontFamily = ttFirsNeueFamily,
         color = MaterialTheme.colorScheme.onSurface,
         modifier = modifier

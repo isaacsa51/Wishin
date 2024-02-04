@@ -11,10 +11,17 @@
     <string name="back">Back</string>
     <string name="close">Close</string>
 
+    <!-- question -->
     <string name="question">Commodo magna intellegat appetere referrentur?</string>
     <string name="instructions">Insert name below</string>
 
+    <!-- Name question -->
+    <string name="name_question">What\'s the name of the item?</string>
+    <string name="name_helper">Insert name below</string>
+
     <!-- Categories question -->
+    <string name="category_question">What categories does this item belong to?</string>
+    <string name="category_helper">Select one category</string>
     <string name="category_art">Art</string>
     <string name="category_automotive">Automotive</string>
     <string name="category_beauty">Beauty</string>
@@ -25,9 +32,25 @@
     <string name="category_tools">Tools</string>
     <string name="category_hobbies">Hobbies</string>
 
+    <!-- Usage question -->
+    <string name="usage_question">How often will you use this item?</string>
+    <string name="usage_helper">Slide to select</string>
+    <string name="usage_very_often">Very Often</string>
+    <string name="usage_often">Often</string>
+    <string name="usage_sometimes">Sometimes</string>
+    <string name="usage_rarely">Rarely</string>
+    <string name="usage_barely">Barely/Almost nonexistent</string>
+
+    <string name="benefit_question">Can you write some reasons of why you need this item?</string>
+    <string name="cons_question">How about some reasons of why you might not need this item?</string>
+    <string name="reasons_helper">Insert reasons below</string>
+
+    <string name="reminder_question">When shall we check-in with you about this item?</string>
+    <string name="select_date">Select date.</string>
+
+
     <!-- survey-->
     <string name="question_count">\u00A0of %d</string>
     <string name="select_one">Select one.</string>
     <string name="select_all">Select all that apply.</string>
-    <string name="select_date">Select date.</string>
 </resources>

@@ -20,10 +20,11 @@ import androidx.compose.ui.unit.sp
 import com.serranoie.wishin.R
 import com.serranoie.wishin.presentation.common.AutoSizeTextField
 import com.serranoie.wishin.presentation.survey.QuestionWrapper
+import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.ui.theme.WishinTheme
 
 @Composable
-fun NameItemQuestion(
+fun BenefitsQuestion(
     @StringRes titleResourceId: Int,
     @StringRes directionsResourceId: Int,
     onClick: () -> Unit,
@@ -38,16 +39,16 @@ fun NameItemQuestion(
     ) {
         Column(
             modifier = modifier
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = basePadding),
         ) {
             AutoSizeTextField(
                 value = text,
                 onValueChange = { text = it },
-                maxLines = 2,
+                maxLines = 4,
                 minFontSize = 10.sp,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(80.dp),
+                    .height(200.dp),
             )
 
             Spacer(Modifier.height(18.dp))
@@ -58,10 +59,10 @@ fun NameItemQuestion(
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun NameItemQuestionPreview() {
+private fun BenefitsPreview() {
     WishinTheme {
         Surface {
-            NameItemQuestion(titleResourceId = R.string.name_question, directionsResourceId = R.string.name_helper, onClick = { /*TODO*/ })
+            BenefitsQuestion(titleResourceId = R.string.benefit_question, directionsResourceId = R.string.reasons_helper, onClick = { /*TODO*/ })
         }
     }
 }
