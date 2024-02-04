@@ -20,11 +20,11 @@ import androidx.compose.ui.unit.sp
 import com.serranoie.wishin.R
 import com.serranoie.wishin.presentation.common.AutoSizeTextField
 import com.serranoie.wishin.presentation.survey.QuestionWrapper
-import com.serranoie.wishin.presentation.utils.Dimens.basePadding
+import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.ui.theme.WishinTheme
 
 @Composable
-fun BenefitsQuestion(
+fun DisadvantagesQuestion(
     @StringRes titleResourceId: Int,
     @StringRes directionsResourceId: Int,
     onClick: () -> Unit,
@@ -39,7 +39,7 @@ fun BenefitsQuestion(
     ) {
         Column(
             modifier = modifier
-                .padding(horizontal = basePadding),
+                .padding(horizontal = Dimens.basePadding),
         ) {
             AutoSizeTextField(
                 value = text,
@@ -59,11 +59,11 @@ fun BenefitsQuestion(
 @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun BenefitsPreview() {
+private fun DisadvantagesPreview() {
     WishinTheme {
         Surface {
-            BenefitsQuestion(
-                titleResourceId = R.string.benefit_question,
+            DisadvantagesQuestion(
+                titleResourceId = R.string.cons_question,
                 directionsResourceId = R.string.reasons_helper,
                 onClick = { /*TODO*/ },
             )
