@@ -48,6 +48,10 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
     ),
+    bodyMedium = TextStyle(
+        fontFamily = exo2Family,
+        fontWeight = FontWeight.Normal,
+    ),
     bodySmall = TextStyle(
         fontFamily = exo2Family,
         fontWeight = FontWeight.Normal,

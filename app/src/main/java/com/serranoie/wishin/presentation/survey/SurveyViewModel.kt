@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.serranoie.wishin.presentation.survey.questions.Category
 import com.serranoie.wishin.presentation.survey.questions.SurveyScreenData
 
+const val simpleDateFormatPattern = "EEE, MMM d"
+
 class SurveyViewModel() : ViewModel() {
     private val questionOrder: List<Questions> = listOf(
         Questions.NAME,
