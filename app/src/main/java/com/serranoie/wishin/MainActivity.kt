@@ -11,18 +11,14 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.serranoie.wishin.domain.usecases.appentry.AppEntryUseCase
-import com.serranoie.wishin.presentation.common.MediumAppBar
 import com.serranoie.wishin.presentation.navigation.NavGraph
 import com.serranoie.wishin.ui.theme.WishinTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,8 +53,6 @@ class MainActivity : ComponentActivity() {
             WishinTheme {
                 val isSystemInDarkMode = isSystemInDarkTheme()
                 val systemController = rememberSystemUiController()
-                val scrollBehavior =
-                    TopAppBarDefaults.enterAlwaysScrollBehavior(rememberTopAppBarState())
 
                 SideEffect {
                     systemController.setSystemBarsColor(
@@ -68,11 +62,7 @@ class MainActivity : ComponentActivity() {
                 }
 
                 Scaffold(
-                    modifier = Modifier.background(color = MaterialTheme.colorScheme.background)
-                        .nestedScroll(scrollBehavior.nestedScrollConnection),
-                    topBar = {
-                        MediumAppBar(scrollBehavior)
-                    },
+                    modifier = Modifier.background(color = MaterialTheme.colorScheme.background),
                 ) { paddingValues ->
                     val startDestination = viewModel.startDestination
                     NavGraph(startDestination = startDestination, paddingValues)

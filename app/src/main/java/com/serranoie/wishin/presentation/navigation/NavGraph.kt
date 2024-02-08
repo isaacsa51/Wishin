@@ -42,7 +42,9 @@ fun NavGraph(
             composable(
                 route = Route.HomeScreen.route,
             ) {
-                HomeScreen(navController, paddingValues)
+                HomeScreen(
+                    navController,
+                )
             }
 
             composable(route = Route.SurveyQuestionsScreen.route) {
