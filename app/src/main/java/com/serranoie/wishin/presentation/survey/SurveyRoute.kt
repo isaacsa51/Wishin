@@ -9,6 +9,7 @@ import androidx.compose.animation.core.TweenSpec
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -33,7 +34,6 @@ fun SurveyRoute(
     onSurveyComplete: () -> Unit,
 ) {
     val viewModel: SurveyViewModel = viewModel()
-
     val surveyScreenData = viewModel.surveyScreenData ?: return
 
     SurveyScreen(
@@ -44,7 +44,7 @@ fun SurveyRoute(
         onDonePressed = { viewModel.onDonePressed(onSurveyComplete) },
     ) { paddingValues ->
 
-        val modifier = Modifier.padding(paddingValues)
+        val modifier = Modifier.padding(paddingValues).statusBarsPadding()
 
         AnimatedContent(
             targetState = surveyScreenData,
@@ -68,12 +68,10 @@ fun SurveyRoute(
         ) { targetState ->
 
             when (targetState.surveyQuestion) {
-                Questions.NAME -> {
-                    PopulateNameQuestion(
-                        modifier = modifier,
-                        onInputResponse = viewModel.nameItemResponse,
-                    )
-                }
+                Questions.NAME -> PopulateNameQuestion(
+                    nameItemResponse = viewModel.nameItemResponse,
+                    onInputResponse = viewModel::onNameResponse,
+                )
 
                 Questions.CATEGORY -> PopulateCategoryQuestion(
                     selectedAnswer = viewModel.categoryResponse,

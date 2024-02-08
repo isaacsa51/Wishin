@@ -35,7 +35,7 @@ fun QuestionWrapper(
 ) {
     Column(
         modifier = modifier
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 16.dp, vertical = 80.dp)
             .verticalScroll(rememberScrollState()),
     ) {
         Spacer(Modifier.height(32.dp))

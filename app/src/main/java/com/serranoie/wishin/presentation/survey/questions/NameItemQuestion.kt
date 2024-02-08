@@ -1,36 +1,31 @@
 package com.serranoie.wishin.presentation.survey.questions
 
-import android.content.res.Configuration
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.serranoie.wishin.R
-import com.serranoie.wishin.presentation.common.AutoSizeTextField
 import com.serranoie.wishin.presentation.survey.QuestionWrapper
-import com.serranoie.wishin.ui.theme.WishinTheme
+import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NameItemQuestion(
     @StringRes titleResourceId: Int,
     @StringRes directionsResourceId: Int,
-    onInputResponse: String?,
+    onInputResponse: (String) -> Unit,
     modifier: Modifier = Modifier,
+    nameItemResponse: String,
 ) {
-    var text by rememberSaveable { mutableStateOf("") }
-
     QuestionWrapper(
         titleResourceId = titleResourceId,
         directionsResourceId = directionsResourceId,
@@ -38,47 +33,48 @@ fun NameItemQuestion(
     ) {
         Column(
             modifier = modifier
-                .padding(horizontal = 16.dp),
+                .padding(basePadding),
         ) {
-            AutoSizeTextField(
-                value = text,
-                onValueChange = { onInputResponse },
-                maxLines = 2,
-                minFontSize = 10.sp,
+            OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(80.dp),
+                    .height(120.dp),
+                value = nameItemResponse,
+                onValueChange = onInputResponse,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                maxLines = 3,
+                textStyle = MaterialTheme.typography.headlineSmall,
             )
-
-            Spacer(Modifier.height(18.dp))
         }
     }
 }
 
 @Composable
 fun PopulateNameQuestion(
-    modifier: Modifier = Modifier,
-    onInputResponse: String?,
+    onInputResponse: (String) -> Unit,
+    nameItemResponse: String,
 ) {
     NameItemQuestion(
         titleResourceId = R.string.name_question,
         directionsResourceId = R.string.name_helper,
         onInputResponse = onInputResponse,
-        modifier = modifier,
+        nameItemResponse = nameItemResponse,
     )
 }
 
-@Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
-@Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun NameItemQuestionPreview() {
-    WishinTheme {
-        Surface {
-            NameItemQuestion(
-                titleResourceId = R.string.name_question,
-                directionsResourceId = R.string.name_helper,
-                onInputResponse = null,
-            )
-        }
-    }
-}
+// @Preview(name = "Light", uiMode = Configuration.UI_MODE_NIGHT_NO)
+// @Preview(name = "Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
+// @Composable
+// private fun NameItemQuestionPreview() {
+//    WishinTheme {
+//        Surface {
+//            var onInputResponse by remember { mutableStateOf<String?>(null) }
+//
+//            NameItemQuestion(
+//                titleResourceId = R.string.name_question,
+//                directionsResourceId = R.string.name_helper,
+//                onInputResponse = onInputResponse,
+//            )
+//        }
+//    }
+// }

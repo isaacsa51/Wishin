@@ -7,7 +7,7 @@ import com.serranoie.wishin.presentation.survey.questions.SurveyScreenData
 
 const val simpleDateFormatPattern = "EEE, MMM d"
 
-class SurveyViewModel() : ViewModel() {
+class SurveyViewModel : ViewModel() {
     private val questionOrder: List<Questions> = listOf(
         Questions.NAME,
         Questions.USAGE,
@@ -19,8 +19,8 @@ class SurveyViewModel() : ViewModel() {
     private var questionIndex = 0
 
     // Responses exposed as State
-    private val _nameItemResponse = mutableStateOf<String?>(null)
-    val nameItemResponse: String?
+    private val _nameItemResponse = mutableStateOf("")
+    val nameItemResponse: String
         get() = _nameItemResponse.value
 
     private val _categoryResponse = mutableStateOf<Category?>(null)
