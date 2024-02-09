@@ -27,13 +27,13 @@ class SurveyViewModel : ViewModel() {
     val categoryResponse: Category?
         get() = _categoryResponse.value
 
-    private val _benefitsResponse = mutableStateOf<String?>(null)
-    val benefitsResponse: String?
-        get() = _benefitsResponse.toString()
+    private val _benefitsResponse = mutableStateOf("")
+    val benefitsResponse: String
+        get() = _benefitsResponse.value
 
-    private val _contrasResponse = mutableStateOf<String?>(null)
-    val contrasResponse: String?
-        get() = _contrasResponse.toString()
+    private val _contrasResponse = mutableStateOf("")
+    val contrasResponse: String
+        get() = _contrasResponse.value
 
     private val _usageResponse = mutableStateOf<Float?>(null)
     val usageResponse: Float?

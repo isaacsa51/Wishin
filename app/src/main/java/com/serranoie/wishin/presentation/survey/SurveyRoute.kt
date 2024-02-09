@@ -85,16 +85,15 @@ fun SurveyRoute(
                     modifier = modifier,
                 )
 
-                Questions.BENEFITS -> {
-                    PopulateBenefitsQuestion(
-                        onInputResponse = viewModel.benefitsResponse,
-                        modifier = modifier,
-                    )
-                }
+                Questions.BENEFITS -> PopulateBenefitsQuestion(
+                    benefitsResponse = viewModel.benefitsResponse,
+                    onInputResponse = viewModel::onBenefitsResponse,
+                )
 
                 Questions.CONTRAS -> {
                     PopulateDisadvantages(
-                        onInputResponse = viewModel.contrasResponse,
+                        contrasResponse = viewModel.contrasResponse,
+                        onInputResponse = viewModel::onContrasResponse,
                         modifier = modifier,
                     )
                 }
