@@ -76,7 +76,6 @@ fun SurveyRoute(
                 Questions.CATEGORY -> PopulateCategoryQuestion(
                     selectedAnswer = viewModel.categoryResponse,
                     onOptionSelected = viewModel::onCategoryResponse,
-                    modifier = modifier,
                 )
 
                 Questions.USAGE -> PopulateUsageQuestion(

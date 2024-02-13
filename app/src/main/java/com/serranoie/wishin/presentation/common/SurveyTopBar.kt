@@ -61,8 +61,7 @@ fun SurveyTopBar(
         LinearProgressIndicator(
             progress = animatedProgress,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 20.dp),
+                .fillMaxWidth(),
             trackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.12f),
         )
     }

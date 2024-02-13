@@ -63,7 +63,6 @@ fun CategoryQuestion(
 fun PopulateCategoryQuestion(
     selectedAnswer: Category?,
     onOptionSelected: (Category) -> Unit,
-    modifier: Modifier = Modifier,
 ) {
     val possibleAnswers = listOf(
         Category(R.string.category_art),
@@ -83,7 +82,6 @@ fun PopulateCategoryQuestion(
         possibleAnswers = possibleAnswers,
         selectedAnswer = selectedAnswer,
         onOptionSelected = onOptionSelected,
-        modifier = modifier,
     )
 }
 

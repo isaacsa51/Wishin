@@ -10,6 +10,7 @@ const val simpleDateFormatPattern = "EEE, MMM d"
 class SurveyViewModel : ViewModel() {
     private val questionOrder: List<Questions> = listOf(
         Questions.NAME,
+        Questions.CATEGORY,
         Questions.USAGE,
         Questions.BENEFITS,
         Questions.CONTRAS,
