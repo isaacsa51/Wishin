@@ -90,13 +90,11 @@ fun SurveyRoute(
                     onInputResponse = viewModel::onBenefitsResponse,
                 )
 
-                Questions.CONTRAS -> {
+                Questions.CONTRAS ->
                     PopulateDisadvantages(
                         contrasResponse = viewModel.contrasResponse,
                         onInputResponse = viewModel::onContrasResponse,
-                        modifier = modifier,
                     )
-                }
 
                 Questions.REMINDER -> {
                     val supportFragmentManager =

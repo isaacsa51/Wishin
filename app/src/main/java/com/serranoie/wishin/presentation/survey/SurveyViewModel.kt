@@ -117,12 +117,12 @@ class SurveyViewModel : ViewModel() {
 
     private fun getIsNextEnabled(): Boolean {
         return when (questionOrder[questionIndex]) {
-            Questions.NAME -> _nameItemResponse.value != null
+            Questions.NAME -> true
             Questions.CATEGORY -> _categoryResponse.value != null
             Questions.USAGE -> _usageResponse.value != null
-            Questions.BENEFITS -> _benefitsResponse.value != null
-            Questions.CONTRAS -> _contrasResponse.value != null
-            Questions.REMINDER -> _reminderResponse != null
+            Questions.BENEFITS -> true
+            Questions.CONTRAS -> true
+            Questions.REMINDER -> true
         }
     }
 
