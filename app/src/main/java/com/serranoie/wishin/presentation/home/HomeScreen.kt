@@ -7,17 +7,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.navigation.NavController
+import com.serranoie.wishin.R
 import com.serranoie.wishin.presentation.common.ExpandableItem
-import com.serranoie.wishin.presentation.common.MediumAppBar
 import com.serranoie.wishin.presentation.navigation.Route
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,7 +34,24 @@ fun HomeScreen(
     Scaffold(
         modifier = Modifier.background(color = MaterialTheme.colorScheme.background),
         topBar = {
-            MediumAppBar()
+            TopAppBar(
+                title = {
+                    Text(
+                        text = stringResource(id = R.string.app_name),
+                        style = MaterialTheme.typography.headlineSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                },
+                actions = {
+                    IconButton(onClick = { navController.navigate(Route.EditScreen.route) }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Settings,
+                            contentDescription = "Application settings button",
+                        )
+                    }
+                },
+            )
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -47,19 +70,12 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            ExpandableItem()
-            ExpandableItem()
-            ExpandableItem()
-            ExpandableItem()
-            ExpandableItem()
-            ExpandableItem()
-            ExpandableItem()
+            ExpandableItem(navController)
+            ExpandableItem(navController)
+            ExpandableItem(navController)
+            ExpandableItem(navController)
+            ExpandableItem(navController)
+            ExpandableItem(navController)
         }
-//        LazyColumn(modifier = Modifier.padding(paddingValues).statusBarsPadding().fillMaxSize()) {
-//            ExpandableItem()
-//            ExpandableItem()
-//            ExpandableItem()
-//            ExpandableItem()
-//        }
     }
 }

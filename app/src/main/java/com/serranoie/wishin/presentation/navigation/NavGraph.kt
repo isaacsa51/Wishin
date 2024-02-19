@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.serranoie.wishin.presentation.edit.EditItemScreen
 import com.serranoie.wishin.presentation.home.HomeScreen
 import com.serranoie.wishin.presentation.onboarding.OnBoardingScreen
 import com.serranoie.wishin.presentation.onboarding.OnBoardingViewModel
@@ -45,6 +46,10 @@ fun NavGraph(
                 HomeScreen(
                     navController,
                 )
+            }
+
+            composable(route = Route.EditScreen.route) {
+                EditItemScreen()
             }
 
             composable(route = Route.SurveyQuestionsScreen.route) {

@@ -12,8 +12,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Circle
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,14 +29,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.serranoie.wishin.presentation.navigation.Route
+import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
+import com.serranoie.wishin.ui.theme.WishinTheme
 
 @Composable
-fun ExpandableItem() {
+fun ExpandableItem(navController: NavController) {
     var expanded by remember { mutableStateOf(false) }
 
     Card(
@@ -71,9 +81,46 @@ fun ExpandableItem() {
             }
 
             if (expanded) {
-                ItemPending()
-                ItemPending()
-                ItemDone()
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = Dimens.largePadding, vertical = Dimens.basePadding)
+                        .fillMaxWidth()
+                        .clickable {
+//                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show()
+                        },
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        Icons.Rounded.Check,
+                        contentDescription = "Check icon",
+                    )
+                    Text(
+                        text = "Item",
+                        modifier = Modifier.padding(horizontal = Dimens.smallPadding),
+                        style = MaterialTheme.typography.titleLarge,
+                        textDecoration = TextDecoration.LineThrough,
+                    )
+                }
+
+                Row(
+                    modifier = Modifier
+                        .padding(horizontal = Dimens.largePadding, vertical = basePadding)
+                        .fillMaxWidth()
+                        .clickable {
+                            navController.navigate(Route.EditScreen.route)
+                        },
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        Icons.Outlined.Circle,
+                        contentDescription = "Icon",
+                    )
+                    Text(
+                        text = "Item",
+                        modifier = Modifier.padding(horizontal = Dimens.smallPadding),
+                        style = MaterialTheme.typography.titleLarge,
+                    )
+                }
             }
         }
     }
@@ -83,5 +130,10 @@ fun ExpandableItem() {
 @PreviewLightDark
 @Composable
 private fun PreviewExpandableItem() {
-    ExpandableItem()
+    val navController = rememberNavController()
+    WishinTheme {
+        Column {
+            ExpandableItem(navController)
+        }
+    }
 }

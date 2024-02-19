@@ -1,8 +1,6 @@
 package com.serranoie.wishin.presentation.survey
 
-import android.content.Context
-import android.content.ContextWrapper
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.TweenSpec
@@ -12,9 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.IntOffset
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.serranoie.wishin.presentation.survey.questions.PopulateBenefitsQuestion
@@ -96,19 +92,16 @@ fun SurveyRoute(
                     )
 
                 Questions.REMINDER -> {
-                    val supportFragmentManager =
-                        LocalContext.current.findActivity().supportFragmentManager
-
                     PopulateReminderQuestion(
                         dateInMillis = viewModel.reminderResponse,
                         onClick = {
-                            showTakeawayDatePicker(
-                                date = viewModel.reminderResponse,
-                                supportFragmentManager = supportFragmentManager,
-                                onDateSelected = viewModel::onReminderResponse,
-                            )
+                            // showtimepicker
+//                            showTakeawayDatePicker(
+//                                date = viewModel.reminderResponse,
+//                                currentActivity = currentActivity,
+//                                onDateSelected = viewModel::onReminderResponse,
+//                            )
                         },
-                        modifier = modifier,
                     )
                 }
             }
@@ -135,23 +128,16 @@ private fun getTransitionDirection(
 
 private fun showTakeawayDatePicker(
     date: Long?,
-    supportFragmentManager: FragmentManager,
+    currentActivity: ComponentActivity,
     onDateSelected: (date: Long) -> Unit,
 ) {
     val picker = MaterialDatePicker.Builder.datePicker()
         .setSelection(date)
         .build()
-    picker.show(supportFragmentManager, picker.toString())
+//    picker.show(currentActivity, picker.toString())
     picker.addOnPositiveButtonClickListener {
         picker.selection?.let {
             onDateSelected(it)
         }
     }
 }
-
-private tailrec fun Context.findActivity(): AppCompatActivity =
-    when (this) {
-        is AppCompatActivity -> this
-        is ContextWrapper -> this.baseContext.findActivity()
-        else -> throw IllegalArgumentException("Could not find activity!")
-    }

@@ -7,6 +7,7 @@ sealed class Route(
     object HomeNavigation : Route(route = "homeNavigation")
     object OnBoardingScreen : Route(route = "onboarding_screen")
     object HomeScreen : Route(route = "home_screen")
+    object EditScreen : Route(route = "edit_screen")
     object SurveyQuestionsScreen : Route(route = "survey_screen")
     object FinishedSurveyScreen : Route(route = "survey_finished_screen")
 }
