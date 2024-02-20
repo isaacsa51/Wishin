@@ -54,6 +54,7 @@ import com.serranoie.wishin.presentation.utils.Dimens.extraSmallPadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
 import com.serranoie.wishin.presentation.utils.Dimens.smallPadding
 import com.serranoie.wishin.ui.theme.WishinTheme
+import com.serranoie.wishin.ui.theme.exo2Family
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -255,7 +256,7 @@ fun EditItemScreen(navController: NavController) {
                             .padding(horizontal = smallPadding),
                         onClick = { navController.popBackStack() },
                     ) {
-                        Text(text = stringResource(id = R.string.cancel))
+                        Text(text = stringResource(id = R.string.cancel), fontFamily = exo2Family)
                     }
 
                     Button(
@@ -268,7 +269,7 @@ fun EditItemScreen(navController: NavController) {
                             navController.popBackStack()
                         },
                     ) {
-                        Text(text = stringResource(id = R.string.save))
+                        Text(text = stringResource(id = R.string.save), fontFamily = exo2Family)
                     }
                 }
             }
