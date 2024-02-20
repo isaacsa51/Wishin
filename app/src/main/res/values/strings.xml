@@ -50,12 +50,14 @@
     <string name="usage_sometimes">Sometimes</string>
     <string name="usage_rarely">Rarely</string>
     <string name="usage_barely">Barely/Almost nonexistent</string>
-
     <string name="benefit_question">Can you write some reasons of why you need this item?</string>
     <string name="cons_question">How about some reasons of why you might not need this item?</string>
     <string name="reasons_helper">Write some reasons below</string>
-
     <string name="reminder_question">When shall we check-in with you about this item?</string>
     <string name="select_date">Select date</string>
-    
+
+    <!-- Finish survey -->
+    <string name="done_survey_title">All done and saved!</string>
+    <string name="done_survey_subtitle">You can view your saved items in the home screen.</string>
+    <string name="done_survey_description">From now on you just have to wait until the reminder appears and you take into account whether you want the product or not.</string>
 </resources>

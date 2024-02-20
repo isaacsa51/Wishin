@@ -19,6 +19,12 @@ val exo2Family = FontFamily(
 )
 
 val Typography = Typography(
+    displayLarge = TextStyle(
+        fontFamily = ttFirsNeueFamily,
+        fontSize = 57.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 64.0.sp,
+    ),
     headlineMedium = TextStyle(
         fontFamily = ttFirsNeueFamily,
         fontWeight = FontWeight.Bold,
