@@ -49,7 +49,7 @@ fun NavGraph(
             }
 
             composable(route = Route.EditScreen.route) {
-                EditItemScreen()
+                EditItemScreen(navController)
             }
 
             composable(route = Route.SurveyQuestionsScreen.route) {

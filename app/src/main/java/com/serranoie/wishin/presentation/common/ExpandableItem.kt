@@ -86,7 +86,7 @@ fun ExpandableItem(navController: NavController) {
                         .padding(horizontal = Dimens.largePadding, vertical = Dimens.basePadding)
                         .fillMaxWidth()
                         .clickable {
-//                Toast.makeText(context, "Click", Toast.LENGTH_LONG).show()
+                            navController.navigate(Route.EditScreen.route)
                         },
                     verticalAlignment = Alignment.CenterVertically,
                 ) {

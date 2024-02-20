@@ -12,8 +12,16 @@
     <string name="done">Done</string>
     <string name="back">Back</string>
     <string name="close">Close</string>
+    <string name="usage_button_label">Usage: </string>
+    <string name="item_details">Current item information</string>
+    <string name="reminder_set_label">Reminder set at: </string>
+    <string name="benefits_label">Reasons of why you need this item</string>
+    <string name="disadvantages_label">Reasons of why you might not use the item</string>
 
-    <!-- question -->
+    <!-- survey-->
+    <string name="question_count">\u00A0of %d</string>
+    <string name="select_one">Select one.</string>
+    <string name="select_all">Select all that apply.</string>
     <string name="question">Commodo magna intellegat appetere referrentur?</string>
     <string name="instructions">Insert name below</string>
 
@@ -49,10 +57,5 @@
 
     <string name="reminder_question">When shall we check-in with you about this item?</string>
     <string name="select_date">Select date</string>
-
-
-    <!-- survey-->
-    <string name="question_count">\u00A0of %d</string>
-    <string name="select_one">Select one.</string>
-    <string name="select_all">Select all that apply.</string>
+    
 </resources>
