@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +32,7 @@ import com.serranoie.wishin.presentation.survey.questions.SurveyScreenData
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.supportWideScreen
 import com.serranoie.wishin.ui.theme.WishinTheme
+import com.serranoie.wishin.ui.theme.exo2Family
 
 @Composable
 fun SurveyScreen(
@@ -86,7 +88,7 @@ fun SurveyResultScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 24.dp),
                 ) {
-                    Text(text = stringResource(id = R.string.done))
+                    Text(text = stringResource(id = R.string.done), fontFamily = exo2Family)
                 }
             },
         )

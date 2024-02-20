@@ -5,13 +5,8 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProgressIndicatorDefaults
@@ -22,7 +17,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.serranoie.wishin.R
 import com.serranoie.wishin.ui.theme.WishinTheme
 
@@ -39,18 +33,6 @@ fun SurveyTopBar(
                     questionIndex = questionIndex,
                     totalQuestionsCount = totalQuestionsCount,
                 )
-            },
-            actions = {
-                IconButton(
-                    onClick = { },
-                    modifier = Modifier.padding(4.dp),
-                ) {
-                    Icon(
-                        Icons.Filled.Close,
-                        contentDescription = "Close button",
-                        tint = MaterialTheme.colorScheme.onSurface,
-                    )
-                }
             },
         )
 

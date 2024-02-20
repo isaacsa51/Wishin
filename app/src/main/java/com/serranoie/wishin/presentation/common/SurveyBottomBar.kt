@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.serranoie.wishin.R
+import com.serranoie.wishin.ui.theme.exo2Family
 
 @Composable
 fun SurveyBottomBar(
@@ -47,7 +48,7 @@ fun SurveyBottomBar(
                         .height(48.dp),
                     onClick = onPreviousPressed,
                 ) {
-                    Text(text = stringResource(id = R.string.previous))
+                    Text(text = stringResource(id = R.string.previous), fontFamily = exo2Family)
                 }
                 Spacer(modifier = Modifier.width(16.dp))
             }
@@ -59,7 +60,7 @@ fun SurveyBottomBar(
                     onClick = onDonePressed,
                     enabled = isNextButtonEnabled,
                 ) {
-                    Text(text = stringResource(id = R.string.done))
+                    Text(text = stringResource(id = R.string.done), fontFamily = exo2Family)
                 }
             } else {
                 Button(
@@ -69,7 +70,7 @@ fun SurveyBottomBar(
                     onClick = onNextPressed,
                     enabled = isNextButtonEnabled,
                 ) {
-                    Text(text = stringResource(id = R.string.next))
+                    Text(text = stringResource(id = R.string.next), fontFamily = exo2Family)
                 }
             }
         }

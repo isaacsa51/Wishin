@@ -68,4 +68,10 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
     ),
+    labelMedium = TextStyle(
+        fontFamily = exo2Family,
+        fontSize = 12.sp,
+        lineHeight = 16.sp,
+        fontWeight = FontWeight.Medium,
+    ),
 )
