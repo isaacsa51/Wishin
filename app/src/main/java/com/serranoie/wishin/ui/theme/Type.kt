@@ -25,6 +25,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Bold,
         lineHeight = 64.0.sp,
     ),
+    headlineLarge = TextStyle(
+        fontFamily = ttFirsNeueFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
+    ),
     headlineMedium = TextStyle(
         fontFamily = ttFirsNeueFamily,
         fontWeight = FontWeight.Bold,

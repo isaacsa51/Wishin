@@ -3,7 +3,6 @@ package com.serranoie.wishin.presentation.onboarding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serranoie.wishin.domain.usecases.appentry.AppEntryUseCase
-import com.serranoie.wishin.presentation.onboarding.components.OnBoardingEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

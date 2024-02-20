@@ -1,4 +1,4 @@
-package com.serranoie.wishin.presentation.onboarding.components
+package com.serranoie.wishin.presentation.onboarding
 
 sealed class OnBoardingEvent {
     object SaveAppEntry : OnBoardingEvent()

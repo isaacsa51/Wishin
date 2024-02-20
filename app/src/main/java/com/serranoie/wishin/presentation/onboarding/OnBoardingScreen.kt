@@ -7,12 +7,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -21,11 +23,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.serranoie.wishin.presentation.onboarding.components.OnBoardingEvent
+import androidx.compose.ui.unit.dp
 import com.serranoie.wishin.presentation.onboarding.components.OnBoardingPage
 import com.serranoie.wishin.presentation.onboarding.components.PageIndicator
+import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
 import com.serranoie.wishin.presentation.utils.Dimens.pageIndicatorWidth
+import com.serranoie.wishin.presentation.utils.Dimens.smallPadding
+import com.serranoie.wishin.ui.theme.exo2Family
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -73,21 +78,28 @@ fun OnBoardingScreen(
 
                 if (buttonState.value[0].isNotEmpty()) {
                     TextButton(
+                        modifier = Modifier
+                            .weight(0.4f)
+                            .height(48.dp)
+                            .padding(horizontal = smallPadding),
                         onClick = {
                             scope.launch {
                                 pagerState.animateScrollToPage(page = pagerState.currentPage - 1)
                             }
                         },
                     ) {
-                        Text(text = buttonState.value[0])
+                        Text(text = buttonState.value[0], fontFamily = exo2Family)
                     }
                 }
 
                 Button(
+                    modifier = Modifier
+                        .weight(0.6f)
+                        .height(48.dp)
+                        .padding(horizontal = basePadding),
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == 1) {
-                                /*TODO: Navigate to HomeScreen */
                                 event(OnBoardingEvent.SaveAppEntry)
                             } else {
                                 pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
@@ -95,18 +107,10 @@ fun OnBoardingScreen(
                         }
                     },
                 ) {
-                    Text(text = buttonState.value[1])
+                    Text(text = buttonState.value[1], fontFamily = exo2Family)
                 }
             }
         }
         Spacer(modifier = Modifier.weight(0.5f))
     }
 }
-
-// @Preview(showBackground = true)
-// @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-// @PreviewLightDark
-// @Composable
-// private fun PreviewOnBoardingScreen() {
-//    OnBoardingScreen()
-// }
