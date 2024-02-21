@@ -264,7 +264,11 @@ fun EditItemScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                SlideToConfirm(isLoading = isLoading, onUnlockRequested = { isLoading = true })
+                SlideToConfirm(
+                    modifier = Modifier.padding(vertical = basePadding),
+                    isLoading = isLoading,
+                    onUnlockRequested = { isLoading = true },
+                )
 
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(vertical = largePadding),

@@ -74,11 +74,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            ExpandableItem(navController)
-            ExpandableItem(navController)
-            ExpandableItem(navController)
-            ExpandableItem(navController)
-            ExpandableItem(navController)
+            // TODO: Via viewmodel hide or show categories with items
             ExpandableItem(navController)
         }
     }
