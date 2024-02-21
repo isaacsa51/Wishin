@@ -8,5 +8,5 @@ import javax.inject.Inject
 class GetAllItemsUseCase @Inject constructor(
     private val repository: ItemRepository,
 ) {
-    suspend operator fun invoke(): Flow<List<Item>> = repository.getAllItems()
+    operator fun invoke(): Flow<List<Item>> = repository.getAllItems()
 }
