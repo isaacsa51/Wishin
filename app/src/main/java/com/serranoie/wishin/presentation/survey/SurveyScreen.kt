@@ -22,7 +22,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.serranoie.wishin.R
 import com.serranoie.wishin.presentation.common.SurveyBottomBar
@@ -139,7 +138,6 @@ private fun SurveyResult(
 }
 
 @PreviewLightDark
-@PreviewScreenSizes
 @Composable
 private fun PreviewSurveyResult() {
     WishinTheme {

@@ -15,16 +15,20 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.serranoie.wishin.R
 import com.serranoie.wishin.presentation.common.ExpandableItem
 import com.serranoie.wishin.presentation.navigation.Route
+import com.serranoie.wishin.ui.theme.WishinTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,6 +80,18 @@ fun HomeScreen(
             ExpandableItem(navController)
             ExpandableItem(navController)
             ExpandableItem(navController)
+        }
+    }
+}
+
+@PreviewLightDark
+@Composable
+private fun PreviewHome() {
+    val navController = rememberNavController()
+
+    WishinTheme {
+        Surface {
+            HomeScreen(navController = navController)
         }
     }
 }

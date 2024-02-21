@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -38,12 +38,13 @@ import androidx.navigation.compose.rememberNavController
 import com.serranoie.wishin.presentation.navigation.Route
 import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
+import com.serranoie.wishin.presentation.utils.Dimens.largePadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
 import com.serranoie.wishin.ui.theme.WishinTheme
 
 @Composable
 fun ExpandableItem(navController: NavController) {
-    var expanded by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(true) }
 
     Card(
         colors = CardDefaults.cardColors(
@@ -69,7 +70,7 @@ fun ExpandableItem(navController: NavController) {
             ) {
                 Box(
                     modifier = Modifier.size(24.dp).clip(RoundedCornerShape(6.dp))
-                        .background(MaterialTheme.colorScheme.tertiary),
+                        .background(MaterialTheme.colorScheme.secondary),
                 )
 
                 Text(
@@ -83,8 +84,9 @@ fun ExpandableItem(navController: NavController) {
             if (expanded) {
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = Dimens.largePadding, vertical = Dimens.basePadding)
+                        .padding(horizontal = largePadding)
                         .fillMaxWidth()
+                        .height(48.dp)
                         .clickable {
                             navController.navigate(Route.EditScreen.route)
                         },
@@ -104,8 +106,9 @@ fun ExpandableItem(navController: NavController) {
 
                 Row(
                     modifier = Modifier
-                        .padding(horizontal = Dimens.largePadding, vertical = basePadding)
+                        .padding(horizontal = largePadding, vertical = basePadding)
                         .fillMaxWidth()
+                        .height(48.dp)
                         .clickable {
                             navController.navigate(Route.EditScreen.route)
                         },
@@ -126,7 +129,6 @@ fun ExpandableItem(navController: NavController) {
     }
 }
 
-@Preview(showBackground = true)
 @PreviewLightDark
 @Composable
 private fun PreviewExpandableItem() {
