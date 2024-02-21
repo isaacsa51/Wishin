@@ -1,4 +1,4 @@
-package com.serranoie.wishin.data.manager
+package com.serranoie.wishin.data.persistance.db.prefs.manager
 
 import android.content.Context
 import androidx.datastore.core.DataStore

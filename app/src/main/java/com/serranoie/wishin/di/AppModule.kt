@@ -1,7 +1,7 @@
 package com.serranoie.wishin.di
 
 import android.app.Application
-import com.serranoie.wishin.data.manager.LocalUserManagerImpl
+import com.serranoie.wishin.data.persistance.db.prefs.manager.LocalUserManagerImpl
 import com.serranoie.wishin.domain.manager.LocalUserManager
 import com.serranoie.wishin.domain.usecases.appentry.AppEntryUseCase
 import com.serranoie.wishin.domain.usecases.appentry.ReadAppEntry
