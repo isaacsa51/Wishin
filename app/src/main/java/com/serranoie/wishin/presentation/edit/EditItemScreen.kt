@@ -19,6 +19,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
@@ -36,6 +37,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -48,9 +50,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.serranoie.wishin.R
+import com.serranoie.wishin.presentation.common.SlideToConfirm
 import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.Dimens.extraSmallPadding
+import com.serranoie.wishin.presentation.utils.Dimens.largePadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
 import com.serranoie.wishin.presentation.utils.Dimens.smallPadding
 import com.serranoie.wishin.ui.theme.WishinTheme
@@ -60,6 +64,7 @@ import com.serranoie.wishin.ui.theme.exo2Family
 @Composable
 fun EditItemScreen(navController: NavController) {
     val itemName by remember { mutableStateOf("Item Name") }
+    var isLoading by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -77,6 +82,14 @@ fun EditItemScreen(navController: NavController) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
                             contentDescription = "Back",
+                        )
+                    }
+                },
+                actions = {
+                    IconButton(onClick = { /* TODO: Delete current item from DB */ }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Delete,
+                            contentDescription = "Delete current item",
                         )
                     }
                 },
@@ -107,7 +120,7 @@ fun EditItemScreen(navController: NavController) {
 
                 Text(
                     text = "Category",
-                    style = MaterialTheme.typography.headlineSmall,
+                    style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(
                         horizontal = Dimens.basePadding,
@@ -246,8 +259,10 @@ fun EditItemScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.weight(1f))
 
+                SlideToConfirm(isLoading = isLoading, onUnlockRequested = { isLoading = true })
+
                 Row(
-                    modifier = Modifier.fillMaxWidth().padding(vertical = basePadding),
+                    modifier = Modifier.fillMaxWidth().padding(vertical = largePadding),
                 ) {
                     OutlinedButton(
                         modifier = Modifier

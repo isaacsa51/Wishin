@@ -59,6 +59,11 @@ val Typography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
     ),
+    titleSmall = TextStyle(
+        fontFamily = exo2Family,
+        fontWeight = FontWeight.Normal,
+        fontSize = 14.sp,
+    ),
     bodyMedium = TextStyle(
         fontFamily = exo2Family,
         fontWeight = FontWeight.Normal,
