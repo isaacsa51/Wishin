@@ -9,7 +9,7 @@ data class Item(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String,
-    val category: String,
+    val category: Category,
     val usage: String,
     val benefits: String?,
     val disadvantages: String,
