@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -50,6 +51,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.serranoie.wishin.R
+import com.serranoie.wishin.presentation.common.AlertDialogModal
 import com.serranoie.wishin.presentation.common.SlideToConfirm
 import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
@@ -65,6 +67,7 @@ import com.serranoie.wishin.ui.theme.exo2Family
 fun EditItemScreen(navController: NavController) {
     val itemName by remember { mutableStateOf("Item Name") }
     var isLoading by remember { mutableStateOf(false) }
+    val openAlertDialog = remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -86,7 +89,9 @@ fun EditItemScreen(navController: NavController) {
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO: Delete current item from DB */ }) {
+                    IconButton(onClick = {
+                        openAlertDialog.value = true
+                    }) {
                         Icon(
                             imageVector = Icons.Outlined.Delete,
                             contentDescription = "Delete current item",
@@ -286,6 +291,19 @@ fun EditItemScreen(navController: NavController) {
                     ) {
                         Text(text = stringResource(id = R.string.save), fontFamily = exo2Family)
                     }
+                }
+
+                if (openAlertDialog.value) {
+                    AlertDialogModal(
+                        onDismissRequest = { openAlertDialog.value = false },
+                        onConfirmation = {
+                            openAlertDialog.value = false
+                            println("Confirmation registered") // Add logic here to handle confirmation.
+                        },
+                        dialogTitle = "Are you sure you want to delete this item?",
+                        dialogText = "By confirming the removal of this product you accept whether the current product has already been purchased or that it is not necessary.",
+                        icon = Icons.Rounded.Info,
+                    )
                 }
             }
         }

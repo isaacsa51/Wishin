@@ -12,6 +12,7 @@
     <string name="done">Done</string>
     <string name="back">Back</string>
     <string name="close">Close</string>
+    <string name="confirm">Confirm</string>
     <string name="usage_button_label">Usage: </string>
     <string name="item_details">Current item information</string>
     <string name="reminder_set_label">Reminder set at: </string>

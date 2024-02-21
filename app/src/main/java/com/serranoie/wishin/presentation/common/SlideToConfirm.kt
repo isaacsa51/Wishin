@@ -208,22 +208,19 @@ fun Hint(
     swipeFraction: Float,
     modifier: Modifier = Modifier,
 ) {
-    val hintTextColor by remember(swipeFraction) {
-        derivedStateOf { calculateHintTextColor(swipeFraction) }
-    }
-
     Text(
         text = text,
-        color = hintTextColor,
+        color = calculateHintTextColor(swipeFraction),
         style = MaterialTheme.typography.titleSmall,
         modifier = modifier,
     )
 }
 
+@Composable
 fun calculateHintTextColor(swipeFraction: Float): Color {
     val endOfFadeFraction = 0.35f
     val fraction = (swipeFraction / endOfFadeFraction).coerceIn(0f..1f)
-    return lerp(Color.White, Color.White.copy(alpha = 0f), fraction)
+    return lerp(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.surface.copy(alpha = 0f), fraction)
 }
 
 private object Thumb {

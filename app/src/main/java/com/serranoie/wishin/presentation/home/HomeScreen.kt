@@ -44,7 +44,7 @@ fun HomeScreen(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { navController.navigate(Route.EditScreen.route) }) {
+                    IconButton(onClick = { /* TODO: Navigate to Settings app */ }) {
                         Icon(
                             imageVector = Icons.Outlined.Settings,
                             contentDescription = "Application settings button",
