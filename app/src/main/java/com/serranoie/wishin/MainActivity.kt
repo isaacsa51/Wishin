@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.background(color = MaterialTheme.colorScheme.background),
                 ) { paddingValues ->
                     val startDestination = viewModel.startDestination
-                    NavGraph(startDestination = startDestination, paddingValues)
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }

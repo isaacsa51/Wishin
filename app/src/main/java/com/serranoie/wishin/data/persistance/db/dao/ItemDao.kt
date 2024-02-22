@@ -6,12 +6,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.serranoie.wishin.data.persistance.db.entity.Item
+import com.serranoie.wishin.data.persistance.db.entity.ItemWithCategory
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemDao {
-    @Query("SELECT * FROM items ORDER BY category")
-    fun getAllItems(): Flow<List<Item>>
+    @Query("SELECT * FROM items")
+    fun getItemsWithCategories(): Flow<List<ItemWithCategory>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertItem(item: Item)

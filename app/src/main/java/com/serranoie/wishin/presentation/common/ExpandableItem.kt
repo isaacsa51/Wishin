@@ -20,6 +20,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,23 +33,26 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import com.serranoie.wishin.data.persistance.db.entity.Category
 import com.serranoie.wishin.data.persistance.db.entity.Item
-import com.serranoie.wishin.presentation.navigation.Route
+import com.serranoie.wishin.data.persistance.db.entity.ItemWithCategory
 import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.Dimens.largePadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
+import com.serranoie.wishin.ui.theme.WishinTheme
+import java.util.Date
 
 @Composable
 fun ExpandableItem(
-    item: Item,
+    titleCategory: Category,
+    item: ItemWithCategory,
     onItemClick: (Long) -> Unit,
-    navController: NavController,
 ) {
     var expanded by remember { mutableStateOf(true) }
-    val isBought = item.isBought
+    val isBought = item.item.isBought
 
     Card(
         colors = CardDefaults.cardColors(
@@ -69,16 +73,20 @@ fun ExpandableItem(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Row(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = mediumPadding),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = mediumPadding),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.size(24.dp).clip(RoundedCornerShape(6.dp))
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(RoundedCornerShape(6.dp))
                         .background(MaterialTheme.colorScheme.secondary),
                 )
 
                 Text(
-                    text = item.category.name,
+                    text = titleCategory.name,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(horizontal = basePadding, vertical = mediumPadding),
@@ -86,27 +94,28 @@ fun ExpandableItem(
             }
 
             if (expanded) {
-                // Check the status of the current item
-                if (isBought) {
-                    PurchasedItem(
-                        navController = navController,
-                        item = item,
-                        onItemClick = onItemClick,
-                    )
-                } else {
-                    PendingItem(
-                        navController = navController,
-                        item = item,
-                        onItemClick = onItemClick,
-                    )
-                }
+                // TODO: Add each item in and check the status of the current item
+
+//                if (isBought) {
+//                    PurchasedItem(
+// //                        navController = navController,
+//                        item = item,
+//                        onItemClick = onItemClick,
+//                    )
+//                } else {
+//                    PendingItem(
+// //                        navController = navController,
+//                        item = item,
+//                        onItemClick = onItemClick,
+//                    )
+//                }
             }
         }
     }
 }
 
 @Composable
-fun PurchasedItem(navController: NavController, item: Item, onItemClick: (Long) -> Unit) {
+fun PurchasedItem(item: Item, onItemClick: (Long) -> Unit) {
     Row(
         modifier = Modifier
             .padding(horizontal = largePadding)
@@ -134,7 +143,7 @@ fun PurchasedItem(navController: NavController, item: Item, onItemClick: (Long) 
 }
 
 @Composable
-fun PendingItem(navController: NavController, item: Item, onItemClick: (Long) -> Unit) {
+fun PendingItem(item: Item, onItemClick: (Long) -> Unit) {
     Row(
         modifier = Modifier
             .padding(horizontal = largePadding, vertical = basePadding)
@@ -160,13 +169,46 @@ fun PendingItem(navController: NavController, item: Item, onItemClick: (Long) ->
     }
 }
 
-// @PreviewLightDark
-// @Composable
-// private fun PreviewExpandableItem() {
-//    val navController = rememberNavController()
-//    WishinTheme {
-//        Column {
-//            ExpandableItem(navController)
-//        }
-//    }
-// }
+@PreviewLightDark
+@Composable
+private fun PreviewExpandableItem() {
+    val category1 = Category(name = "Books")
+    val category2 = Category(name = "Clothing")
+
+    val categoriesData = listOf(
+        Category(
+            name = "Books",
+        ),
+        Category(
+            name = "Clothing",
+        ),
+        Category(
+            name = "Random",
+        ),
+    )
+
+    val itemData = Item(
+        name = "Name item",
+        idCategory = 1,
+        usage = "Sometimes",
+        benefits = "Fastidii alienum nonumy detracto quaeque decore graeci dictum",
+        disadvantages = "Posidonium idque et harum euismod nihil te fringilla pertinacia vulputate",
+        reminderDate = Date(),
+        reminderTime = Date(),
+        isBought = false,
+    )
+
+    val mockData = ItemWithCategory(
+        item = itemData,
+        categories = categoriesData,
+    )
+
+    WishinTheme {
+        Surface {
+            Column {
+                ExpandableItem(titleCategory = category1, item = mockData, onItemClick = {})
+                ExpandableItem(titleCategory = category2, item = mockData, onItemClick = {})
+            }
+        }
+    }
+}

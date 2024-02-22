@@ -24,8 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.serranoie.wishin.R
-import com.serranoie.wishin.presentation.common.SurveyBottomBar
-import com.serranoie.wishin.presentation.common.SurveyTopBar
+import com.serranoie.wishin.presentation.survey.common.SurveyBottomBar
+import com.serranoie.wishin.presentation.survey.common.SurveyTopBar
 import com.serranoie.wishin.presentation.survey.questions.SurveyScreenData
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.supportWideScreen

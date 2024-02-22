@@ -1,4 +1,4 @@
-package com.serranoie.wishin.presentation.common
+package com.serranoie.wishin.presentation.survey.common
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState

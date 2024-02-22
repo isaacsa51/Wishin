@@ -3,7 +3,7 @@ package com.serranoie.wishin.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serranoie.wishin.common.ScreenViewState
-import com.serranoie.wishin.data.persistance.db.entity.Item
+import com.serranoie.wishin.data.persistance.db.entity.ItemWithCategory
 import com.serranoie.wishin.domain.usecases.item.DeleteItemUseCase
 import com.serranoie.wishin.domain.usecases.item.GetAllItemsUseCase
 import com.serranoie.wishin.domain.usecases.item.UpdateItemUseCase
@@ -43,5 +43,5 @@ class HomeViewModel @Inject constructor(
 }
 
 data class HomeState(
-    val items: ScreenViewState<List<Item>> = ScreenViewState.Loading,
+    val items: ScreenViewState<List<ItemWithCategory>> = ScreenViewState.Loading,
 )

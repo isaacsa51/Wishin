@@ -1,4 +1,4 @@
-package com.serranoie.wishin.presentation.common
+package com.serranoie.wishin.presentation.survey.common
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
