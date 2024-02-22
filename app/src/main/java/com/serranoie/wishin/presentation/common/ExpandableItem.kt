@@ -31,20 +31,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
+import com.serranoie.wishin.data.persistance.db.entity.Item
 import com.serranoie.wishin.presentation.navigation.Route
 import com.serranoie.wishin.presentation.utils.Dimens
 import com.serranoie.wishin.presentation.utils.Dimens.basePadding
 import com.serranoie.wishin.presentation.utils.Dimens.largePadding
 import com.serranoie.wishin.presentation.utils.Dimens.mediumPadding
-import com.serranoie.wishin.ui.theme.WishinTheme
 
 @Composable
-fun ExpandableItem(navController: NavController) {
+fun ExpandableItem(
+    item: Item,
+    onItemClick: (Long) -> Unit,
+    navController: NavController,
+) {
     var expanded by remember { mutableStateOf(true) }
+    val isBought = item.isBought
 
     Card(
         colors = CardDefaults.cardColors(
@@ -74,7 +78,7 @@ fun ExpandableItem(navController: NavController) {
                 )
 
                 Text(
-                    text = "Category",
+                    text = item.category.name,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(horizontal = basePadding, vertical = mediumPadding),
@@ -82,46 +86,18 @@ fun ExpandableItem(navController: NavController) {
             }
 
             if (expanded) {
-                Row(
-                    modifier = Modifier
-                        .padding(horizontal = largePadding)
-                        .fillMaxWidth()
-                        .height(48.dp)
-                        .clickable {
-                            navController.navigate(Route.EditScreen.route)
-                        },
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(
-                        Icons.Rounded.Check,
-                        contentDescription = "Check icon",
+                // Check the status of the current item
+                if (isBought) {
+                    PurchasedItem(
+                        navController = navController,
+                        item = item,
+                        onItemClick = onItemClick,
                     )
-                    Text(
-                        text = "Item",
-                        modifier = Modifier.padding(horizontal = Dimens.smallPadding),
-                        style = MaterialTheme.typography.titleLarge,
-                        textDecoration = TextDecoration.LineThrough,
-                    )
-                }
-
-                Row(
-                    modifier = Modifier
-                        .padding(horizontal = largePadding, vertical = basePadding)
-                        .fillMaxWidth()
-                        .height(48.dp)
-                        .clickable {
-                            navController.navigate(Route.EditScreen.route)
-                        },
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(
-                        Icons.Outlined.Circle,
-                        contentDescription = "Icon",
-                    )
-                    Text(
-                        text = "Item",
-                        modifier = Modifier.padding(horizontal = Dimens.smallPadding),
-                        style = MaterialTheme.typography.titleLarge,
+                } else {
+                    PendingItem(
+                        navController = navController,
+                        item = item,
+                        onItemClick = onItemClick,
                     )
                 }
             }
@@ -129,13 +105,68 @@ fun ExpandableItem(navController: NavController) {
     }
 }
 
-@PreviewLightDark
 @Composable
-private fun PreviewExpandableItem() {
-    val navController = rememberNavController()
-    WishinTheme {
-        Column {
-            ExpandableItem(navController)
-        }
+fun PurchasedItem(navController: NavController, item: Item, onItemClick: (Long) -> Unit) {
+    Row(
+        modifier = Modifier
+            .padding(horizontal = largePadding)
+            .fillMaxWidth()
+            .height(48.dp)
+            .clickable {
+                // navController.navigate(Route.EditScreen.route)
+                onItemClick(item.id)
+            },
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            Icons.Rounded.Check,
+            contentDescription = "Check icon",
+        )
+        Text(
+            text = item.name,
+            modifier = Modifier.padding(horizontal = Dimens.smallPadding),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            style = MaterialTheme.typography.titleLarge,
+            textDecoration = TextDecoration.LineThrough,
+        )
     }
 }
+
+@Composable
+fun PendingItem(navController: NavController, item: Item, onItemClick: (Long) -> Unit) {
+    Row(
+        modifier = Modifier
+            .padding(horizontal = largePadding, vertical = basePadding)
+            .fillMaxWidth()
+            .height(48.dp)
+            .clickable {
+                // navController.navigate(Route.EditScreen.route)
+                onItemClick(item.id)
+            },
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Icon(
+            Icons.Outlined.Circle,
+            contentDescription = "Icon",
+        )
+        Text(
+            text = item.name,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.padding(horizontal = Dimens.smallPadding),
+            style = MaterialTheme.typography.titleLarge,
+        )
+    }
+}
+
+// @PreviewLightDark
+// @Composable
+// private fun PreviewExpandableItem() {
+//    val navController = rememberNavController()
+//    WishinTheme {
+//        Column {
+//            ExpandableItem(navController)
+//        }
+//    }
+// }
