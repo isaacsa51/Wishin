@@ -7,9 +7,10 @@ import java.util.Date
 @Entity(tableName = "items")
 data class Item(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
+    val idItem: Long = 0,
+    val categoryItemId: Long,
     val name: String,
-    val category: Category,
+    val category: String,
     val usage: String,
     val benefits: String?,
     val disadvantages: String,
