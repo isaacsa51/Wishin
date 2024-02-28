@@ -29,8 +29,8 @@ import androidx.navigation.compose.rememberNavController
 import com.serranoie.wishin.R
 import com.serranoie.wishin.common.ScreenViewState
 import com.serranoie.wishin.data.persistance.db.entity.Category
+import com.serranoie.wishin.data.persistance.db.entity.CategoryWithItems
 import com.serranoie.wishin.data.persistance.db.entity.Item
-import com.serranoie.wishin.data.persistance.db.entity.ItemWithCategory
 import com.serranoie.wishin.presentation.common.NoItemsView
 import com.serranoie.wishin.presentation.navigation.Route
 import com.serranoie.wishin.ui.theme.WishinTheme
@@ -42,19 +42,20 @@ fun HomeScreen(
     state: HomeState,
     onItemClick: (Long) -> Unit,
 ) {
-    when (state.items) {
+    when (state.itemsWithCategory) {
         is ScreenViewState.Loading -> {
+            // TODO: ADD SHIMMER EFFECT
             CircularProgressIndicator()
         }
 
         is ScreenViewState.Success -> {
-            val items = state.items.data
+            val items = state.itemsWithCategory.data
             HomeContent(navController = navController, items = items, onItemClick = onItemClick)
         }
 
         is ScreenViewState.Error -> {
             Text(
-                text = state.items.message ?: "Unknow Error!!",
+                text = state.itemsWithCategory.message ?: "Unknow Error!!",
                 style = MaterialTheme.typography.displayMedium,
                 color = MaterialTheme.colorScheme.error,
             )
@@ -66,7 +67,7 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     navController: NavController,
-    items: List<ItemWithCategory>,
+    items: List<CategoryWithItems>,
     onItemClick: (Long) -> Unit,
 ) {
     Scaffold(
@@ -107,17 +108,12 @@ fun HomeContent(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            // TODO: Via viewmodel hide or show categories with items
-
             if (items.isEmpty()) {
                 NoItemsView()
             } else {
                 LazyColumn {
                     itemsIndexed(items) { _, item ->
-//                        ExpandableItem(
-//                            item = item,
-//                            onItemClick = onItemClick,
-//                        )
+                        CategoriesCard(item = item, onItemClick = onItemClick)
                     }
                 }
             }
@@ -130,33 +126,35 @@ fun HomeContent(
 private fun PreviewHome() {
     val navController = rememberNavController()
 
-    val categoriesData = listOf(
-        Category(
-            name = "Books",
-        ),
-        Category(
-            name = "Clothing",
-        ),
-        Category(
-            name = "Random",
-        ),
+    val categoriesData = Category(
+        name = "Books",
     )
 
-    val itemData = Item(
-        name = "Name item",
-        idCategory = 1,
-        usage = "Sometimes",
-        benefits = "Fastidii alienum nonumy detracto quaeque decore graeci dictum",
-        disadvantages = "Posidonium idque et harum euismod nihil te fringilla pertinacia vulputate",
-        reminderDate = Date(),
-        reminderTime = Date(),
-        isBought = false,
+    val itemData = listOf(
+        Item(
+            name = "Name item",
+            usage = "Sometimes",
+            benefits = "Fastidii alienum nonumy detracto quaeque decore graeci dictum",
+            disadvantages = "Posidonium idque et harum euismod nihil te fringilla pertinacia vulputate",
+            reminderDate = Date(),
+            reminderTime = Date(),
+            isBought = false,
+        ),
+        Item(
+            name = "Name item",
+            usage = "Sometimes",
+            benefits = "Fastidii alienum nonumy detracto quaeque decore graeci dictum",
+            disadvantages = "Posidonium idque et harum euismod nihil te fringilla pertinacia vulputate",
+            reminderDate = Date(),
+            reminderTime = Date(),
+            isBought = true,
+        ),
     )
 
     val mockData = listOf(
-        ItemWithCategory(
-            item = itemData,
-            categories = categoriesData,
+        CategoryWithItems(
+            category = categoriesData,
+            items = itemData,
         ),
     )
 
@@ -164,7 +162,7 @@ private fun PreviewHome() {
         Surface {
             HomeScreen(
                 navController = navController,
-                state = HomeState(items = ScreenViewState.Success(mockData)),
+                state = HomeState(itemsWithCategory = ScreenViewState.Success(mockData)),
                 onItemClick = {},
             )
         }

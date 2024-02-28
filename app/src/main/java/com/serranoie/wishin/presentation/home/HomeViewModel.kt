@@ -3,9 +3,10 @@ package com.serranoie.wishin.presentation.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serranoie.wishin.common.ScreenViewState
-import com.serranoie.wishin.data.persistance.db.entity.ItemWithCategory
+import com.serranoie.wishin.data.persistance.db.entity.CategoryWithItems
+import com.serranoie.wishin.data.persistance.db.entity.Item
 import com.serranoie.wishin.domain.usecases.item.DeleteItemUseCase
-import com.serranoie.wishin.domain.usecases.item.GetAllItemsUseCase
+import com.serranoie.wishin.domain.usecases.item.GetAllItemsWithCategoryUseCase
 import com.serranoie.wishin.domain.usecases.item.UpdateItemUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getAllItemsUseCase: GetAllItemsUseCase,
+    private val getAllItemsWithCategory: GetAllItemsWithCategoryUseCase,
     private val updateItemUseCase: UpdateItemUseCase,
     private val deleteItemUseCase: DeleteItemUseCase,
 ) : ViewModel() {
@@ -27,14 +28,18 @@ class HomeViewModel @Inject constructor(
     val state: StateFlow<HomeState> = _state.asStateFlow()
 
     private fun getAllItems() {
-        getAllItemsUseCase()
+        getAllItemsWithCategory()
             .onEach {
-                _state.value = HomeState(items = ScreenViewState.Success(it))
+                _state.value = HomeState(itemsWithCategory = ScreenViewState.Success(it))
             }
             .catch {
-                _state.value = HomeState(items = ScreenViewState.Error(it.message))
+                _state.value = HomeState(itemsWithCategory = ScreenViewState.Error(it.message))
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun updateItem(item: Item) = viewModelScope.launch {
+        updateItemUseCase(item)
     }
 
     private fun deleteItem(itemId: Long) = viewModelScope.launch {
@@ -43,5 +48,5 @@ class HomeViewModel @Inject constructor(
 }
 
 data class HomeState(
-    val items: ScreenViewState<List<ItemWithCategory>> = ScreenViewState.Loading,
+    val itemsWithCategory: ScreenViewState<List<CategoryWithItems>> = ScreenViewState.Loading,
 )
