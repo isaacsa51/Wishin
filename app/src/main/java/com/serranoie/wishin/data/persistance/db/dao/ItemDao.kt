@@ -12,6 +12,10 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ItemDao {
+
+    @Query("SELECT * FROM items WHERE idItem=:id")
+    fun getItemById(id: Long): Flow<Item>
+
     @Query("SELECT * FROM items")
     fun getItemsWithCategories(): Flow<List<ItemWithCategories>>
 

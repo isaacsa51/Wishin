@@ -11,6 +11,10 @@ import javax.inject.Inject
 class ItemRepositoryImpl @Inject constructor(
     private val itemDao: ItemDao,
 ) : ItemRepository {
+    override fun getItemById(id: Long): Flow<Item> {
+        return itemDao.getItemById(id)
+    }
+
     override fun getItemsWithCategory(): Flow<List<ItemWithCategories>> {
         return itemDao.getItemsWithCategories()
     }
