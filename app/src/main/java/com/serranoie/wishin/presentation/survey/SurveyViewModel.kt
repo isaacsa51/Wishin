@@ -2,12 +2,19 @@ package com.serranoie.wishin.presentation.survey
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.serranoie.wishin.data.persistance.db.entity.CategoryWithItems
+import com.serranoie.wishin.domain.usecases.item.AddItemUseCase
 import com.serranoie.wishin.presentation.survey.questions.Category
 import com.serranoie.wishin.presentation.survey.questions.SurveyScreenData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 const val simpleDateFormatPattern = "EEE, MMM d"
 
-class SurveyViewModel : ViewModel() {
+@HiltViewModel
+class SurveyViewModel @Inject constructor(
+    private val addItemUseCase: AddItemUseCase,
+) : ViewModel() {
     private val questionOrder: List<Questions> = listOf(
         Questions.NAME,
         Questions.CATEGORY,
@@ -18,6 +25,7 @@ class SurveyViewModel : ViewModel() {
     )
 
     private var questionIndex = 0
+    private var currentItem: CategoryWithItems? = null
 
     // Responses exposed as State
     private val _nameItemResponse = mutableStateOf("")

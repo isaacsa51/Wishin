@@ -8,7 +8,7 @@ import java.util.Date
 data class Item(
     @PrimaryKey(autoGenerate = true)
     val idItem: Long = 0,
-    val name: String,
+    var name: String,
     val usage: String,
     val benefits: String?,
     val disadvantages: String,
